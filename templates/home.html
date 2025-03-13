@@ -1,5 +1,12 @@
-Home Page
-<form action="{% url 'logout' %}" method="POST">
-    {% csrf_token %}
-    <input type="submit" value="Log Out">
-</form>
+{% extends "_base.html" %}
+
+{% block title %}Home{% endblock title %}
+
+
+{% block content %}
+    <h1>Home Page</h1>
+    <form action="{% url 'logout' %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" value="Log Out">
+    </form>
+{% endblock content %}
