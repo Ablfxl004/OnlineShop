@@ -1,12 +1,12 @@
 {% extends "_base.html" %}
 
-{% block title %}Log In{% endblock title %}
+{% block title %}Log Out{% endblock title %}
 
 
 {% block content %}
+    <h3>Are you sure you want to log out?</h3>
     <form action="" method="POST">
         {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Log In">
+        <input type="submit" value="Yes, Sure">
     </form>
 {% endblock content %}

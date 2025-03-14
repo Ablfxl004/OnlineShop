@@ -2,12 +2,13 @@
 
 {% load crispy_forms_tags %}
 
-{% block title %}Password Reset{% endblock title %}
+{% block title %}Log In{% endblock title %}
+
 
 {% block content %}
     <form action="" method="POST">
         {% csrf_token %}
-        {{ form|crispy}}
-        <input type="submit" value="Submit">
+        {{ form|crispy }}
+        <input type="submit" value="Log In">
     </form>
 {% endblock content %}
