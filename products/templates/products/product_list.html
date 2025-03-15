@@ -1,0 +1,16 @@
+{% extends "_base.html" %}
+
+{% block title %}Products List{% endblock title %}
+
+
+{% block content %}
+    <hr>
+    {% for pro in products %}
+        {% if pro.active %}
+            <h4>{{ pro.title|capfirst }}</h4>
+            <h5>{{ pro.price }} Toman</h5>
+            <a href="{{ pro.get_absolute_url }}">more...</a>
+            <hr>
+        {% endif %}
+    {% endfor %}
+{% endblock content %}
