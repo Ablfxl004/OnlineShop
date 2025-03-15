@@ -16,6 +16,12 @@ services:
       - POSTGRES_PASSWORD=postgres
       - POSTGRES_HOST=db
       - POSTGRES_PORT=5432
+      - DJANGO_EMAIL_BACKEND=django.core.mail.backends.smtp.EmailBackend
+      - DJANGO_EMAIL_HOST=smtp.gmail.com
+      - DJANGO_EMAIL_PORT=587
+      - DJANGO_EMAIL_USE_TLS=True
+      - DJANGO_EMAIL_HOST_USER=Ablfxlll@gmail.com  
+      - DJANGO_EMAIL_HOST_PASSWORD=curq izbx xclz jhug
 
   db:
     image: postgres:14
