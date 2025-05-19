@@ -1,10 +1,20 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView
 from django.urls import reverse
+from django.contrib import messages
 
 
 from .models import Product, ProductComment
 from .forms import ProductCommentForm
+
+
+def test_messages(request):
+    messages.success(request, 'This is a success message')
+    messages.error(request, 'this is a error message')
+    messages.info(request, 'this is a info message')
+
+    return render(request, 'products/messages.html')
+
 
 class ProductListView(ListView):
     model = Product

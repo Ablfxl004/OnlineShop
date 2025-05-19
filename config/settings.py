@@ -200,3 +200,10 @@ ACCOUNT_UNIQUE_EMAIL = True
 # EMAIL_HOST_PASSWORD = env("DJANGO_EMAIL_HOST_PASSWORD")
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# for messages framework
+from django.contrib.messages import constants
+MESSAGE_TAGS = {
+    constants.ERROR: 'danger'
+}
+
