@@ -9,6 +9,11 @@
 
 
 {% block content %}
+
+{% trans 'Details of' as header_name %}
+
+{% include "topheader.html" with header_name=header_name information_variable=product.title %}
+
 {% if product.active %}
 <!-- Main Content Wrapper Start -->
 <div class="main-content-wrapper">
@@ -30,15 +35,14 @@
                             <span class="money old-price text-danger">{{ product.price }} {% translate "$" %}</span>
                         </div>
                         <div class="product-action d-flex align-items-sm-center align-content-center mb--30">
-                            <div class="quantity-wrapper d-flex justify-content-start">
+                            <form action="{% url 'cart:cart_add' product.id %}" method="POST">
+                                {% csrf_token %}
                                 <div class="quantity">
-                                    <input type="number" class="quantity-input" name="qty" id="qty" value="1" min="1">
+                                    {% comment %} nitice to name attribute {% endcomment %}
+                                    <input type="number" class="quantity-input" name="quantity" id="qty" value="1" min="1" max="10">
                                 </div>
-                            </div>
-                            <button type="button" class="btn btn-small btn-bg-red btn-color-white btn-hover-2" onclick="window.location.href='cart.html'">
-                                {% trans 'Add to Cart' %}
-                            </button>
-                        </div>
+                                <button class="btn" type="sibmit">{% trans 'Add to Cart' %}</button>
+                            </form>
                         <div class="product-footer-meta mt-5 pt-5">
                             <p><span class="m-0">{% translate "categories" %}:</span>
                                 <a href="shop.html">لباس</a>,
@@ -133,41 +137,30 @@
                                                 {% endfor %}
                                             </ul>
                                             <div class="review-form-wrapper">
-                                                <div class="row">
-                                                    <div class="border-top py-5 w-100"></div>
-                                                    <div class="col-lg-8 m-auto">
-                                                        <span class="reply-title pull-right">
-                                                            {% trans 'Write your comment' %}
-                                                        </span>
-                                                        <br>
-                                                        <form action="{% url 'comment_create' product.id %}" method="POST" class="form text-right">
-                                                            {% comment %} <div class="form-notes mb--20">
-                                                                <p class="my-3"><span class="required">*</span>ایمیل شما برای دیگران نشان داده نمیشود.</p>
-                                                            </div>
-                                                            <div class="form__group mb--10">
-                                                                <label class="form__label d-block" for="email">متن نظر شما<span class="required">*</span></label>
-                                                                <textarea name="review" id="review" class="form__input form__input--textarea"></textarea>
-                                                            </div>
-                                                            <div class="form__group mb--20">
-                                                                <label class="form__label d-block" for="name">نام شما<span class="required">*</span></label>
-                                                                <input type="text" name="name" id="name" class="form__input">
-                                                            </div>
-                                                            <div class="form__group mb--20">
-                                                                <label class="form__label d-block" for="email">ایمیل شما<span class="required">*</span></label>
-                                                                <input type="email" name="email" id="email" class="form__input">
-                                                            </div> {% endcomment %}
-                                                            {% csrf_token %}
-                                                            {{ comment_form|crispy }}
-                                                            <div class="form__group">
-                                                                <div class="form-row">
-                                                                    <div class="col-12">
-                                                                        <input type="submit" value="{% trans 'submit' %}" class="btn-submit">
+                                            {% if user.is_authenticated %}
+                                                    <div class="row">
+                                                        <div class="border-top py-5 w-100"></div>
+                                                        <div class="col-lg-8 m-auto">
+                                                            <span class="reply-title pull-right">
+                                                                {% trans 'Write your comment' %}
+                                                            </span>
+                                                            <br>
+                                                            <form action="{% url 'comment_create' product.id %}" method="POST" class="form text-right">
+                                                                {% csrf_token %}
+                                                                {{ comment_form|crispy }}
+                                                                <div class="form__group">
+                                                                    <div class="form-row">
+                                                                        <div class="col-12">
+                                                                            <input type="submit" value="{% trans 'submit' %}" class="btn-submit">
+                                                                        </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
-                                                        </form>
+                                                            </form>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                    {% else %}
+                                                    <p>{% trans 'To right your comment please login' %}</p>
+                                                    {% endif %}
                                             </div>
                                         </div>
                                     </div>

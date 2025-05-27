@@ -88,6 +88,9 @@ TEMPLATES = [
 
                 # `allauth` needs this from django
                 'django.template.context_processors.request',
+
+                # Custom Context processors
+                'cart.context_processors.cart'
             ],
         },
     },
