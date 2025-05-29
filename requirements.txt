@@ -5,9 +5,12 @@ crispy-bootstrap5==2024.10
 Django==5.1.7
 django-allauth==65.4.1
 django-crispy-forms==2.3
+django-jalali-date==2.0.0
 django-rosetta==0.10.2
 environs==14.1.1
 idna==3.10
+jalali_core==1.0.0
+jdatetime==5.2.0
 marshmallow==4.0.0
 pillow==11.2.1
 polib==1.2.0
@@ -15,6 +18,7 @@ psycopg2-binary==2.9.10
 python-dotenv==1.1.0
 requests==2.32.3
 rosetta==0.3
+setuptools==80.9.0
 sqlparse==0.5.3
 tzdata==2025.1
 urllib3==2.4.0

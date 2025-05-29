@@ -4,6 +4,10 @@
 {% load i18n %}
 {% load crispy_forms_tags %}
 {% load commenttags %}
+{% load humanize %}
+
+{% load persian_translate_tags %}
+
 
 {% block title %}Cart Detail{% endblock title %}
 
@@ -50,7 +54,7 @@
                                                                 </td>
                                                                 <td class="product-price">
                                                                     <span class="product-price-wrapper">
-                                                                        <span class="money">{{ item.product_obj.price}} تومان</span>
+                                                                        <span class="money">{{ item.product_obj.price|intcomma:False|translate_number }} {% trans '$' %}</span>
                                                                     </span>
                                                                 </td>
                                                                 <td class="product-quantity">
@@ -70,7 +74,7 @@
                                                                 </td>
                                                                 <td class="product-total-price">
                                                                     <span class="product-price-wrapper">
-                                                                        <span class="money">{{ item.total_price }} تومان</span>
+                                                                        <span class="money">{{ item.total_price|intcomma:False|translate_number }} {% trans '$' %}</span>
                                                                     </span>
                                                                 </td>
                                                             </tr>
@@ -106,7 +110,7 @@
                                             </div>
                                             <div class="cart-calculator__item--value">
                                                 <span class="product-price-wrapper">
-                                                    <span class="money">{{ cart.get_total_price }} تومان</span>
+                                                    <span class="money">{{ cart.get_total_price|intcomma:False|translate_number }} {% trans '$' %}</span>
                                                 </span>
                                             </div>
                                         </div>
