@@ -4,9 +4,11 @@ from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
 
+from ckeditor.fields import RichTextField
+
 class Product(models.Model):
     title = models.CharField(max_length=200)
-    description = models.TextField()
+    description = RichTextField()
     price = models.PositiveIntegerField(default=0)
     active = models.BooleanField(default=True)
     datetime_created = models.DateTimeField(verbose_name=_('Created time'), default=timezone.now)
