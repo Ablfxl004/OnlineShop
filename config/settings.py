@@ -42,15 +42,18 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    #Third party apps
     "crispy_forms",
     "crispy_bootstrap5",
+
+    'jalali_date',
 
     'allauth',
     'allauth.account',
 
     'rosetta',
 
-    #locals
+    #locals apps
     'accounts.apps.AccountsConfig',
     'pages.apps.PagesConfig',
     'products.apps.ProductsConfig',

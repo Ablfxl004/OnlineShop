@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import Product, ProductComment
-# Register your models here.
+from jalali_date.admin import ModelAdminJalaliMixin
 
 
 class CommentsInline(admin.StackedInline):
@@ -9,7 +9,7 @@ class CommentsInline(admin.StackedInline):
     extra = 0
 
 @admin.register(Product)
-class ProcustAdmin(admin.ModelAdmin):
+class ProcustAdmin(ModelAdminJalaliMixin,admin.ModelAdmin):
     list_display = ('title', 'price', 'datetime_modified', 'active')
     inlines = (
         CommentsInline,
